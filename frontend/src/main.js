@@ -1,6 +1,15 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
+import ElementPlus from 'element-plus'
+import request from './axios'
+import 'element-plus/dist/index.css'
+import './assets/global.css';
 
-createApp(App).use(store).use(router).mount('#app')
+const app = createApp(App)
+
+app.use(router)
+app.use(ElementPlus)
+app.config.globalProperties.$request = request
+
+app.mount('#app')

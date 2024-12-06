@@ -1,0 +1,21 @@
+div, body, el-menu {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+.el-container, .el-header, .el-main, .el-footer {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+.el-container {
+    height: 100vh;
+}
+.el-header {
+    height: 60px;
+}
+.el-main {
+    display: flex;
+    height: calc(100vh - 60px);
+    justify-content: center;
+}

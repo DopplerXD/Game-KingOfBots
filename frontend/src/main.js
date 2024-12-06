@@ -4,7 +4,7 @@ import router from './router'
 import ElementPlus from 'element-plus'
 import request from './axios'
 import 'element-plus/dist/index.css'
-import './assets/global.css';
+import './assets/css/global.css';
 
 const app = createApp(App)
 

@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <ContentField>
-      <span>pk index</span>
-    </ContentField>
-  </div>
+    <div>
+        <PlayGround />
+    </div>
 </template>
 
 <script lang="js" setup>
-import ContentField from "@/components/ContentField.vue"
+import PlayGround from "@/components/PlayGround.vue";
 </script>
 
 <style scoped></style>

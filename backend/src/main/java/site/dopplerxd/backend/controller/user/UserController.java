@@ -2,6 +2,8 @@ package site.dopplerxd.backend.controller.user;
 
 import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,19 +24,20 @@ public class UserController {
     @Autowired
     private UserMapper userMapper;
 
-    @GetMapping("/all")
+    @GetMapping("/find/all")
     public List<User> findAll() {
         return userService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/find/{id}")
     public User findById(@PathVariable("id") int id) {
         return userService.getById(id);
     }
 
-    @GetMapping("/{id}/{username}/{password}")
+    @GetMapping("/add/{id}/{username}/{password}")
     public String updateUser(@PathVariable("id") int id, @PathVariable("username") String username, @PathVariable("password") String password) {
-        userService.saveOrUpdate(new User(id, username, password));
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        userService.saveOrUpdate(new User(id, username, passwordEncoder.encode(password)));
         return "update success";
     }
 

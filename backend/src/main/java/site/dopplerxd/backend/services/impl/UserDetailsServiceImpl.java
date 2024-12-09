@@ -5,9 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 import site.dopplerxd.backend.entity.User;
 import site.dopplerxd.backend.mapper.UserMapper;
+import site.dopplerxd.backend.services.impl.utils.UserDetailsImpl;
 
+@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
@@ -21,6 +24,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (user == null) {
             throw new RuntimeException("User not found");
         }
-        return null;
+        return new UserDetailsImpl(user);
     }
 }

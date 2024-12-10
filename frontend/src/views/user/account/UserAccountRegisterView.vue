@@ -1,8 +1,6 @@
 <template>
     <div>
-        <ContentField>
-            <span>record index</span>
-        </ContentField>
+        <ContentField> 注册 </ContentField>
     </div>
 </template>
 

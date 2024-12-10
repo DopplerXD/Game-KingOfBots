@@ -17,8 +17,9 @@
       <el-menu-item index="/ranklist">排行榜</el-menu-item>
       <el-sub-menu index="2">
         <template #title>个人中心</template>
+        <el-menu-item index="/user/account/info">个人信息</el-menu-item>
         <el-menu-item index="/user/bot">我的 Bot</el-menu-item>
-        <el-menu-item index="2-2">退出</el-menu-item>
+        <el-menu-item index="/user/account/logout">退出</el-menu-item>
       </el-sub-menu>
     </el-menu>
   </div>

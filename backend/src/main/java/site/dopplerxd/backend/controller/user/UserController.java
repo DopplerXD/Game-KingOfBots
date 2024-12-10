@@ -21,8 +21,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private UserMapper userMapper;
 
     @GetMapping("/find/all")
     public List<User> findAll() {

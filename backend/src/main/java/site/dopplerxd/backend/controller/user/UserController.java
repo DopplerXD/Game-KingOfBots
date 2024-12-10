@@ -35,7 +35,9 @@ public class UserController {
     }
 
     @GetMapping("/add/{id}/{username}/{password}")
-    public String updateUser(@PathVariable("id") int id, @PathVariable("username") String username, @PathVariable("password") String password) {
+    public String updateUser(@PathVariable("id") int id,
+                             @PathVariable("username") String username,
+                             @PathVariable("password") String password) {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         userService.saveOrUpdate(new User(id, username, passwordEncoder.encode(password)));
         return "update success";

@@ -1,7 +1,7 @@
 // import { createStore } from "vuex";
 import request from "@/axios";
 
-export default ({
+export default {
     state: {
         id: "",
         username: "",
@@ -20,6 +20,13 @@ export default ({
         updateToken(state, token) {
             state.token = token;
         },
+        logout(state) {
+            state.id = '';
+            state.username = '';
+            state.photo = '';
+            state.token = '';
+            state.is_login = false;
+        }
     },
     actions: {
         login(context, data) {
@@ -44,8 +51,35 @@ export default ({
                 })
                 .catch(() => {
                     data.error();
-                }); 
+                });
         },
+        getInfo(context, data) {
+            request({
+                method: "GET",
+                url: "/user/account/info",
+                headers: {
+                    Authorization:
+                        "Bearer " + context.state.token,
+                },
+            })
+                .then((response) => {
+                    if (response.data.error_message === "success") {
+                        context.commit("updateUser", {
+                            ...response.data,
+                            is_login: true,
+                        });
+                        data.success(response);
+                    } else {
+                        data.error();
+                    }
+                })
+                .catch(() => {
+                    data.error();
+                });
+        },
+        logout(context) {
+            context.commit("logout");
+        }
     },
     modules: {},
-});
+};

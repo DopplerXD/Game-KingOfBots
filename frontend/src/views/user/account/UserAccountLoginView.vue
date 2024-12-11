@@ -40,8 +40,13 @@ const submitForm = () => {
         password: password.value,
         success(response) {
             console.log(response);
-            error_message.value = '登录成功';
-            loginSuccessMessageBox();
+            store.dispatch("getInfo", {
+                success() {
+                    console.log(store.state.user);
+                    error_message.value = '登录成功';
+                    loginSuccessMessageBox();
+                }
+            })
         },
         error() {
             console.log("用户名或密码错误");

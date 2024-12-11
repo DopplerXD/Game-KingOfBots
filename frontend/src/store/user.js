@@ -8,6 +8,7 @@ export default {
         photo: "",
         token: "",
         is_login: false,
+        getting_info: true,
     },
     getters: {},
     mutations: {
@@ -26,6 +27,9 @@ export default {
             state.photo = '';
             state.token = '';
             state.is_login = false;
+        },
+        updateGettingInfo(state, status) {
+            state.getting_info = status;
         }
     },
     actions: {
@@ -43,6 +47,7 @@ export default {
             })
                 .then((response) => {
                     if (response.data.error_message === "success") {
+                        localStorage.setItem("jwt_token", response.data.token);
                         context.commit("updateToken", response.data.token);
                         data.success(response.data);
                     } else {
@@ -78,7 +83,34 @@ export default {
                 });
         },
         logout(context) {
+            localStorage.removeItem("jwt_token");
             context.commit("logout");
+        },
+        register(context, data) {
+            request({
+                method: "POST",
+                url: "/user/account/register",
+                data: {
+                    username: data.username,
+                    password: data.password,
+                    confirmedPassword: data.confirmedPassword,
+                },
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded",
+                },
+            })
+                .then((response) => {
+                    if (response.data.error_message === "success") {
+                        localStorage.setItem("jwt_token", response.data.token);
+                        context.commit("updateToken", response.data.token);
+                        data.success(response.data);
+                    } else {
+                        data.error(response.data.error_message);
+                    }
+                })
+                .catch(() => {
+                    data.error("未知错误");
+                });
         }
     },
     modules: {},

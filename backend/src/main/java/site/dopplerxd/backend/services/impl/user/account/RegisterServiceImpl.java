@@ -2,11 +2,16 @@ package site.dopplerxd.backend.services.impl.user.account;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import site.dopplerxd.backend.entity.User;
 import site.dopplerxd.backend.services.UserService;
+import site.dopplerxd.backend.services.impl.utils.UserDetailsImpl;
 import site.dopplerxd.backend.services.user.account.RegisterService;
+import site.dopplerxd.backend.utils.JwtUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +24,8 @@ public class RegisterServiceImpl implements RegisterService {
     private UserService userService;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
     @Override
     public Map<String, String> register(String username, String password, String confirmedPassword) {
@@ -48,12 +55,20 @@ public class RegisterServiceImpl implements RegisterService {
             return map;
         }
 
-        if (password.length() == 0 || confirmedPassword.length() == 0) {
+        if (password.length() == 0) {
             map.put("error_message", "密码不能为空");
             return map;
         }
-        if (password.length() > 100 || confirmedPassword.length() > 100) {
+        if (confirmedPassword.length() == 0) {
+            map.put("error_message", "确认密码不能为空");
+            return map;
+        }
+        if (password.length() > 100) {
             map.put("error_message", "密码长度不能超过100");
+            return map;
+        }
+        if (confirmedPassword.length() > 100) {
+            map.put("error_message", "确认密码长度不能超过100");
             return map;
         }
 
@@ -75,7 +90,16 @@ public class RegisterServiceImpl implements RegisterService {
         String photo = "https://cdn.acwing.com/media/user/profile/photo/450178_lg_963ea242b1.jpg";
         User user = new User(null, username, encodedPassword, photo);
         userService.save(user);
-        map.put("error_message", "注册成功");
+        map.put("error_message", "success");
+
+        UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
+
+        Authentication authenticate = authenticationManager.authenticate(token); // 登录失败会自动处理异常
+
+        UserDetailsImpl loginUser = (UserDetailsImpl) authenticate.getPrincipal();
+        user = loginUser.getUser();
+        String jwtToken = JwtUtil.createJWT(user.getId().toString());
+        map.put("token", jwtToken);
 
         return map;
     }

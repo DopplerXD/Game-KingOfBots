@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div v-if="!store.state.user.getting_info">
         <ContentField style="max-width: 30vw; margin-top: 50px">
-            <el-form ref="ruleFormRef" style="max-width: 20vw" label-position="top">
+            <el-form style="max-width: 20vw" label-position="top">
                 <el-form-item label="用户名">
                     <el-input v-model="username" />
                 </el-form-item>
@@ -9,13 +9,10 @@
                     <el-input type="password" v-model="password" />
                 </el-form-item>
                 <el-form-item>
-                    <el-button type="primary" @click="submitForm(ruleFormRef)"> 登录 </el-button>
-                    <el-button @click="resetForm(ruleFormRef)"> 清空 </el-button>
+                    <el-button type="primary" @click="login()"> 登录 </el-button>
+                    <el-button @click="resetForm()"> 清空 </el-button>
                 </el-form-item>
             </el-form>
-            <!-- <div class="error_message">
-                {{ error_message }}
-            </div> -->
         </ContentField>
     </div>
 </template>
@@ -25,31 +22,46 @@ import ContentField from "@/components/ContentField.vue"
 import { ref } from 'vue'
 import { useStore } from "vuex"
 import { ElMessageBox } from 'element-plus'
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 
 const router = useRouter();
+const route = useRoute();
+const redirectPath = route.query.redirect || '/home';
 
 const store = useStore();
 const username = ref('');
 const password = ref('');
 const error_message = ref('');
 
-const submitForm = () => {
+const jwt_token = localStorage.getItem("jwt_token");
+if (jwt_token) {
+    store.commit("updateToken", jwt_token);
+    store.dispatch("getInfo", {
+        success() {
+            router.push(redirectPath);
+            store.commit("updateGettingInfo", false);
+        },
+        error() {
+            store.commit("updateGettingInfo", false);
+        }
+    })
+} else {
+    store.commit("updateGettingInfo", false);
+}
+
+const login = () => {
     store.dispatch("login", {
         username: username.value,
         password: password.value,
-        success(response) {
-            console.log(response);
+        success() {
             store.dispatch("getInfo", {
                 success() {
-                    console.log(store.state.user);
                     error_message.value = '登录成功';
-                    loginSuccessMessageBox();
+                    loginSuccessMessageBox(redirectPath);
                 }
             })
         },
         error() {
-            console.log("用户名或密码错误");
             error_message.value = '用户名或密码错误';
             loginFailMessageBox();
         }
@@ -62,11 +74,11 @@ const resetForm = () => {
     error_message.value = '';
 };
 
-const loginSuccessMessageBox = () => {
+const loginSuccessMessageBox = (redirectPath) => {
     ElMessageBox.alert(error_message.value, '', {
     confirmButtonText: 'OK',
     callback: () => {
-      router.push('/pk');
+      router.push(redirectPath);
     },
   })
 };

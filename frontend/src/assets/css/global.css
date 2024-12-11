@@ -19,3 +19,11 @@ div, body, el-menu, canvas {
     height: calc(100vh - 60px);
     justify-content: center;
 }
+
+/* 取消导航栏高亮字体色和item下划线 */
+.el-menu--horizontal > .el-menu-item.is-active { 
+    border-bottom: 0px;
+}
+.el-menu--horizontal > .el-menu-item { 
+    border-bottom: 0px;
+}

@@ -7,7 +7,6 @@ import site.dopplerxd.backend.entity.Bot;
 import site.dopplerxd.backend.services.user.bot.GetListService;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class GetListController {

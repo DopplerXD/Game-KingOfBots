@@ -1,0 +1,34 @@
+"filename", "language", "JavaScript", "JSON with Comments", "JSON", "vue", "HTML", "Markdown", "CSS", "comment", "blank", "total"
+"e:\DevelopLearning\Game-KingOfBots\frontend\README.md", "Markdown", 0, 0, 0, 0, 0, 19, 0, 0, 6, 25
+"e:\DevelopLearning\Game-KingOfBots\frontend\babel.config.js", "JavaScript", 5, 0, 0, 0, 0, 0, 0, 0, 1, 6
+"e:\DevelopLearning\Game-KingOfBots\frontend\jsconfig.json", "JSON with Comments", 0, 19, 0, 0, 0, 0, 0, 0, 1, 20
+"e:\DevelopLearning\Game-KingOfBots\frontend\package-lock.json", "JSON", 0, 0, 11392, 0, 0, 0, 0, 0, 1, 11393
+"e:\DevelopLearning\Game-KingOfBots\frontend\package.json", "JSON", 0, 0, 52, 0, 0, 0, 0, 0, 1, 53
+"e:\DevelopLearning\Game-KingOfBots\frontend\public\index.html", "HTML", 0, 0, 0, 0, 16, 0, 0, 1, 1, 18
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\App.vue", "vue", 0, 0, 0, 19, 0, 0, 0, 0, 3, 22
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\assets\css\global.css", "CSS", 0, 0, 0, 0, 0, 0, 27, 1, 1, 29
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\assets\scripts\GameMap.js", "JavaScript", 151, 0, 0, 0, 0, 0, 0, 4, 25, 180
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\assets\scripts\GameObect.js", "JavaScript", 36, 0, 0, 0, 0, 0, 0, 0, 10, 46
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\assets\scripts\Snake.js", "JavaScript", 109, 0, 0, 0, 0, 0, 0, 0, 26, 135
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\assets\scripts\SnakeCell.js", "JavaScript", 8, 0, 0, 0, 0, 0, 0, 0, 0, 8
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\assets\scripts\Wall.js", "JavaScript", 19, 0, 0, 0, 0, 0, 0, 0, 5, 24
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\axios.js", "JavaScript", 5, 0, 0, 0, 0, 0, 0, 0, 2, 7
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\components\ContentField.vue", "vue", 0, 0, 0, 13, 0, 0, 0, 0, 3, 16
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\components\GameMap.vue", "vue", 0, 0, 0, 23, 0, 0, 0, 0, 5, 28
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\components\NavBar.vue", "vue", 0, 0, 0, 71, 0, 0, 0, 1, 8, 80
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\components\PlayGround.vue", "vue", 0, 0, 0, 15, 0, 0, 0, 0, 3, 18
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\main.js", "JavaScript", 14, 0, 0, 0, 0, 0, 0, 0, 4, 18
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\router\index.js", "JavaScript", 100, 0, 0, 0, 0, 0, 0, 0, 6, 106
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\store\index.js", "JavaScript", 11, 0, 0, 0, 0, 0, 0, 0, 2, 13
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\store\user.js", "JavaScript", 115, 0, 0, 0, 0, 0, 0, 1, 2, 118
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\views\error\NotFound.vue", "vue", 0, 0, 0, 26, 0, 0, 0, 0, 3, 29
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\views\pk\PKIndexView.vue", "vue", 0, 0, 0, 9, 0, 0, 0, 0, 3, 12
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\views\public\HomePageView.vue", "vue", 0, 0, 0, 11, 0, 0, 0, 0, 3, 14
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\views\ranklist\RanklistIndexView.vue", "vue", 0, 0, 0, 11, 0, 0, 0, 0, 3, 14
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\views\record\RecordView.vue", "vue", 0, 0, 0, 11, 0, 0, 0, 0, 3, 14
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\views\user\account\UserAccountInfoView.vue", "vue", 0, 0, 0, 21, 0, 0, 0, 0, 4, 25
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\views\user\account\UserAccountLoginView.vue", "vue", 0, 0, 0, 95, 0, 0, 0, 0, 10, 105
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\views\user\account\UserAccountRegisterView.vue", "vue", 0, 0, 0, 79, 0, 0, 0, 0, 9, 88
+"e:\DevelopLearning\Game-KingOfBots\frontend\src\views\user\bot\UserBotIndexView.vue", "vue", 0, 0, 0, 11, 0, 0, 0, 0, 3, 14
+"e:\DevelopLearning\Game-KingOfBots\frontend\vue.config.js", "JavaScript", 4, 0, 0, 0, 0, 0, 0, 0, 1, 5
+"Total", "-", 577, 19, 11444, 415, 16, 19, 27, 8, 158, 12683

@@ -1,0 +1,81 @@
+Date : 2024-12-11 23:09:15
+Directory : e:\DevelopLearning\Game-KingOfBots\frontend
+Total : 32 files,  12517 codes, 8 comments, 158 blanks, all 12683 lines
+
+Languages
++--------------------+------------+------------+------------+------------+------------+
+| language           | files      | code       | comment    | blank      | total      |
++--------------------+------------+------------+------------+------------+------------+
+| JSON               |          2 |     11,444 |          0 |          2 |     11,446 |
+| JavaScript         |         12 |        577 |          5 |         84 |        666 |
+| vue                |         14 |        415 |          1 |         63 |        479 |
+| CSS                |          1 |         27 |          1 |          1 |         29 |
+| JSON with Comments |          1 |         19 |          0 |          1 |         20 |
+| Markdown           |          1 |         19 |          0 |          6 |         25 |
+| HTML               |          1 |         16 |          1 |          1 |         18 |
++--------------------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                           | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                              |         32 |     12,517 |          8 |        158 |     12,683 |
+| . (Files)                                                                                      |          6 |     11,491 |          0 |         11 |     11,502 |
+| public                                                                                         |          1 |         16 |          1 |          1 |         18 |
+| src                                                                                            |         25 |      1,010 |          7 |        146 |      1,163 |
+| src (Files)                                                                                    |          3 |         38 |          0 |          9 |         47 |
+| src\assets                                                                                     |          6 |        350 |          5 |         67 |        422 |
+| src\assets\css                                                                                 |          1 |         27 |          1 |          1 |         29 |
+| src\assets\scripts                                                                             |          5 |        323 |          4 |         66 |        393 |
+| src\components                                                                                 |          4 |        122 |          1 |         19 |        142 |
+| src\router                                                                                     |          1 |        100 |          0 |          6 |        106 |
+| src\store                                                                                      |          2 |        126 |          1 |          4 |        131 |
+| src\views                                                                                      |          9 |        274 |          0 |         41 |        315 |
+| src\views\error                                                                                |          1 |         26 |          0 |          3 |         29 |
+| src\views\pk                                                                                   |          1 |          9 |          0 |          3 |         12 |
+| src\views\public                                                                               |          1 |         11 |          0 |          3 |         14 |
+| src\views\ranklist                                                                             |          1 |         11 |          0 |          3 |         14 |
+| src\views\record                                                                               |          1 |         11 |          0 |          3 |         14 |
+| src\views\user                                                                                 |          4 |        206 |          0 |         26 |        232 |
+| src\views\user\account                                                                         |          3 |        195 |          0 |         23 |        218 |
+| src\views\user\bot                                                                             |          1 |         11 |          0 |          3 |         14 |
++------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| filename                                                                                       | language           | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+
+| e:\DevelopLearning\Game-KingOfBots\frontend\README.md                                          | Markdown           |         19 |          0 |          6 |         25 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\babel.config.js                                    | JavaScript         |          5 |          0 |          1 |          6 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\jsconfig.json                                      | JSON with Comments |         19 |          0 |          1 |         20 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\package-lock.json                                  | JSON               |     11,392 |          0 |          1 |     11,393 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\package.json                                       | JSON               |         52 |          0 |          1 |         53 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\public\index.html                                  | HTML               |         16 |          1 |          1 |         18 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\App.vue                                        | vue                |         19 |          0 |          3 |         22 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\assets\css\global.css                          | CSS                |         27 |          1 |          1 |         29 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\assets\scripts\GameMap.js                      | JavaScript         |        151 |          4 |         25 |        180 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\assets\scripts\GameObect.js                    | JavaScript         |         36 |          0 |         10 |         46 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\assets\scripts\Snake.js                        | JavaScript         |        109 |          0 |         26 |        135 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\assets\scripts\SnakeCell.js                    | JavaScript         |          8 |          0 |          0 |          8 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\assets\scripts\Wall.js                         | JavaScript         |         19 |          0 |          5 |         24 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\axios.js                                       | JavaScript         |          5 |          0 |          2 |          7 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\components\ContentField.vue                    | vue                |         13 |          0 |          3 |         16 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\components\GameMap.vue                         | vue                |         23 |          0 |          5 |         28 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\components\NavBar.vue                          | vue                |         71 |          1 |          8 |         80 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\components\PlayGround.vue                      | vue                |         15 |          0 |          3 |         18 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\main.js                                        | JavaScript         |         14 |          0 |          4 |         18 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\router\index.js                                | JavaScript         |        100 |          0 |          6 |        106 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\store\index.js                                 | JavaScript         |         11 |          0 |          2 |         13 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\store\user.js                                  | JavaScript         |        115 |          1 |          2 |        118 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\views\error\NotFound.vue                       | vue                |         26 |          0 |          3 |         29 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\views\pk\PKIndexView.vue                       | vue                |          9 |          0 |          3 |         12 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\views\public\HomePageView.vue                  | vue                |         11 |          0 |          3 |         14 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\views\ranklist\RanklistIndexView.vue           | vue                |         11 |          0 |          3 |         14 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\views\record\RecordView.vue                    | vue                |         11 |          0 |          3 |         14 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\views\user\account\UserAccountInfoView.vue     | vue                |         21 |          0 |          4 |         25 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\views\user\account\UserAccountLoginView.vue    | vue                |         95 |          0 |         10 |        105 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\views\user\account\UserAccountRegisterView.vue | vue                |         79 |          0 |          9 |         88 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\src\views\user\bot\UserBotIndexView.vue            | vue                |         11 |          0 |          3 |         14 |
+| e:\DevelopLearning\Game-KingOfBots\frontend\vue.config.js                                      | JavaScript         |          4 |          0 |          1 |          5 |
+| Total                                                                                          |                    |     12,517 |          8 |        158 |     12,683 |
++------------------------------------------------------------------------------------------------+--------------------+------------+------------+------------+------------+

@@ -40,7 +40,7 @@ public class AddServiceImpl implements AddService {
             map.put("error_message", "标题长度不能超过100");
             return map;
         }
-        if (description == null) {
+        if (description == null || description.length() == 0) {
             description = "这个用户很懒，什么也没有写。";
         }
         if (description.length() > 300) {
@@ -56,7 +56,7 @@ public class AddServiceImpl implements AddService {
         Bot bot = new Bot(null, user.getId(), title, description, content, 1500, now, now);
         botMapper.insert(bot);
 
-        map.put("success_message", "success");
+        map.put("error_message", "success");
 
         return map;
     }

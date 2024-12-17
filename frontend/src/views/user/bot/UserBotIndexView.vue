@@ -17,7 +17,7 @@
                             "
                         >
                             <span style="font-size: 120%">我的 Bot</span>
-                            <el-button type="primary" @click="botEditorVisible = true"
+                            <el-button type="primary" @click="addBotEditorVisible = true"
                                 >创建 Bot</el-button
                             >
                         </div>
@@ -28,19 +28,24 @@
                         <el-table-column prop="createTime" label="创建时间" width="200" />
                         <el-table-column prop="rating" label="rating" width="100" />
                         <el-table-column label="操作">
-                            <template #defalut="scope">
-                                <el-button type="primary" size="small" @click="updateBotInfo(scope.row.id)">修改</el-button>
-                                <el-button type="danger" size="small" @click="deleteBot(scope.row.id)">删除</el-button>
+                            <template #default="scope">
+                                <el-button
+                                    type="success"
+                                    size="small"
+                                    @click="updateBotDialog(scope.row)"
+                                    >修改</el-button
+                                >
+                                <el-button
+                                    type="danger"
+                                    size="small"
+                                    @click="removeBot(scope.row.id)"
+                                    >删除</el-button
+                                >
                             </template>
                         </el-table-column>
                     </el-table>
 
-                    <el-dialog
-                        v-model="botEditorVisible"
-                        title="设计你的 Bot"
-                        width="45vw"
-                        :before-close="handleClose"
-                    >
+                    <el-dialog v-model="addBotEditorVisible" title="设计你的 Bot" width="45vw">
                         <el-form
                             :model="form"
                             label-width="auto"
@@ -66,13 +71,20 @@
                                 />
                             </el-form-item>
                             <el-form-item label="代码">
-                                <el-input
+                                <!-- <el-input
                                     v-model="newbot.content"
                                     type="textarea"
                                     :max-length="10000"
                                     show-word-limit
                                     :rows="7"
                                     placeholder="请输入Bot代码"
+                                /> -->
+                                <VAceEditor
+                                    v-model:value="newbot.content"
+                                    :lang="language"
+                                    :theme="theme"
+                                    :options="editorOptions"
+                                    style="height: 350px; width: 100%"
                                 />
                             </el-form-item>
                         </el-form>
@@ -81,12 +93,64 @@
                                 <span class="error-message">{{ newbot.error_message }}</span>
                                 <el-button
                                     @click="
-                                        botEditorVisible = false;
+                                        addBotEditorVisible = false;
                                         cleanNewBot();
                                     "
                                     >取消</el-button
                                 >
                                 <el-button type="primary" @click="addBot(newbot)"> 确定 </el-button>
+                            </div>
+                        </template>
+                    </el-dialog>
+
+                    <el-dialog v-model="updateBotEditorVisible" title="修改你的 Bot" width="45vw">
+                        <el-form
+                            :model="form"
+                            label-width="auto"
+                            style="max-width: 100%"
+                            label-position="top"
+                        >
+                            <el-form-item label="名称" :required="true">
+                                <el-input
+                                    v-model="newbot.title"
+                                    :max-length="100"
+                                    show-word-limit
+                                    placeholder="请输入Bot名称"
+                                />
+                            </el-form-item>
+                            <el-form-item label="描述">
+                                <el-input
+                                    v-model="newbot.description"
+                                    type="textarea"
+                                    :max-length="300"
+                                    show-word-limit
+                                    :rows="3"
+                                    placeholder="请输入Bot描述"
+                                />
+                            </el-form-item>
+                            <el-form-item label="代码">
+                                <VAceEditor
+                                    v-model:value="newbot.content"
+                                    :lang="language"
+                                    :theme="theme"
+                                    :options="editorOptions"
+                                    style="height: 350px; width: 100%"
+                                />
+                            </el-form-item>
+                        </el-form>
+                        <template #footer>
+                            <div class="bot-editor-footer">
+                                <span class="error-message">{{ newbot.error_message }}</span>
+                                <el-button
+                                    @click="
+                                        updateBotEditorVisible = false;
+                                        cleanNewBot();
+                                    "
+                                    >取消</el-button
+                                >
+                                <el-button type="primary" @click="updateBot(newbot)">
+                                    确定
+                                </el-button>
                             </div>
                         </template>
                     </el-dialog>
@@ -100,12 +164,26 @@
 import { ref, onMounted, reactive } from 'vue'
 import { useStore } from 'vuex'
 import request from '@/axios'
+import { ElMessage } from 'element-plus'
+
+import { VAceEditor } from 'vue3-ace-editor';
+import 'ace-builds/src-noconflict/mode-c_cpp';
+import 'ace-builds/src-noconflict/theme-chrome';
+
+const language = ref('c_cpp');
+const theme = ref('chrome');
+const editorOptions = ref({
+  fontSize: '14px',
+  showPrintMargin: false,
+});
 
 const store = useStore();
-const botEditorVisible = ref(false);
+const addBotEditorVisible = ref(false);
+const updateBotEditorVisible = ref(false);
 
 let bots = ref([]);
 const newbot = reactive({
+    id: '',
     title: '',
     description: '',
     content: '',
@@ -117,9 +195,9 @@ onMounted(() => {
 });
 
 const cleanNewBot = () => {
-    newbot.title.value = '';
-    newbot.title.description = '';
-    newbot.title.content = '';
+    newbot.title = '';
+    newbot.description = '';
+    newbot.content = '';
 };
 
 const getBotList = () => {
@@ -155,7 +233,7 @@ const addBot = (bot) => {
         .then((response) => {
             if (response.data.error_message === "success") {
                 getBotList();
-                botEditorVisible.value = false;
+                addBotEditorVisible.value = false;
                 cleanNewBot();
             } else {
                 newbot.error_message = response.data.error_message;
@@ -165,13 +243,21 @@ const addBot = (bot) => {
         });
 };
 
-const updateBot = (bot, updateBot_id) => {
+const updateBotDialog = (data) => {
+    newbot.id = data.id;
+    newbot.title = data.title;
+    newbot.description = data.description;
+    newbot.content = data.content;
+    updateBotEditorVisible.value = true;
+};
+
+const updateBot = (bot) => {
     bot.error_message = '';
     request({
         method: "POST",
         url: "/user/bot/update",
         data: {
-            bot_id: updateBot_id,
+            bot_id: bot.id,
             title: bot.title,
             description: bot.description,
             content: bot.content,
@@ -183,11 +269,36 @@ const updateBot = (bot, updateBot_id) => {
     })
         .then((response) => {
             if (response.data.error_message === "success") {
+                ElMessage.success('成功修改该 bot');
                 getBotList();
-                botEditorVisible.value = false;
+                updateBotEditorVisible.value = false;
                 cleanNewBot();
             } else {
                 newbot.error_message = response.data.error_message;
+            }
+        })
+        .catch(() => {
+        });
+};
+
+const removeBot = (del_bot_id) => {
+    request({
+        method: "POST",
+        url: "/user/bot/remove",
+        data: {
+            bot_id: del_bot_id,
+        },
+        headers: {
+            "Authorization": "Bearer " + store.state.user.token,
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+    })
+        .then((response) => {
+            if (response.data.error_message === "success") {
+                ElMessage.success('成功删除该 bot')
+                getBotList();
+            } else {
+                ElMessage.error(response.data.error_message);
             }
         })
         .catch(() => {

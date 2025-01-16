@@ -58,6 +58,10 @@ const login = () => {
                 success() {
                     error_message.value = '登录成功';
                     loginSuccessMessageBox(redirectPath);
+                },
+                error() {
+                    error_message.value = '用户名或密码错误';
+                    loginFailMessageBox();
                 }
             })
         },

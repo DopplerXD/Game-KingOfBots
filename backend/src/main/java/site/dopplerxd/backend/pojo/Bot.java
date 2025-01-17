@@ -1,4 +1,4 @@
-package site.dopplerxd.backend.entity;
+package site.dopplerxd.backend.pojo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

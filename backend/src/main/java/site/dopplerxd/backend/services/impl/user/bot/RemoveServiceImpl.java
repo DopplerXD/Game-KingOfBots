@@ -2,8 +2,8 @@ package site.dopplerxd.backend.services.impl.user.bot;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import site.dopplerxd.backend.entity.Bot;
-import site.dopplerxd.backend.entity.User;
+import site.dopplerxd.backend.pojo.Bot;
+import site.dopplerxd.backend.pojo.User;
 import site.dopplerxd.backend.mapper.BotMapper;
 import site.dopplerxd.backend.services.user.bot.RemoveService;
 import site.dopplerxd.backend.utils.GetUserUtil;

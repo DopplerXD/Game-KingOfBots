@@ -7,7 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import site.dopplerxd.backend.entity.User;
+import site.dopplerxd.backend.pojo.User;
 import site.dopplerxd.backend.services.UserService;
 import site.dopplerxd.backend.services.impl.utils.UserDetailsImpl;
 import site.dopplerxd.backend.services.user.account.RegisterService;

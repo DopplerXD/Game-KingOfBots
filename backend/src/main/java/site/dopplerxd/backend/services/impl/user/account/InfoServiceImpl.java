@@ -3,7 +3,7 @@ package site.dopplerxd.backend.services.impl.user.account;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import site.dopplerxd.backend.entity.User;
+import site.dopplerxd.backend.pojo.User;
 import site.dopplerxd.backend.services.impl.utils.UserDetailsImpl;
 import site.dopplerxd.backend.services.user.account.InfoService;
 

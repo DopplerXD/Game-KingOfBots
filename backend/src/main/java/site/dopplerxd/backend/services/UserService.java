@@ -3,7 +3,7 @@ package site.dopplerxd.backend.services;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import site.dopplerxd.backend.entity.User;
+import site.dopplerxd.backend.pojo.User;
 import site.dopplerxd.backend.mapper.UserMapper;
 
 import java.util.List;

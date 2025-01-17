@@ -6,7 +6,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import site.dopplerxd.backend.entity.User;
+import site.dopplerxd.backend.pojo.User;
 import site.dopplerxd.backend.services.impl.utils.UserDetailsImpl;
 import site.dopplerxd.backend.services.user.account.LoginService;
 import site.dopplerxd.backend.utils.JwtUtil;

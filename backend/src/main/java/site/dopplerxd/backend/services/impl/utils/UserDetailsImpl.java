@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import site.dopplerxd.backend.entity.User;
+import site.dopplerxd.backend.pojo.User;
 
 import java.util.Collection;
 

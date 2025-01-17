@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import site.dopplerxd.backend.entity.User;
+import site.dopplerxd.backend.pojo.User;
 import site.dopplerxd.backend.mapper.UserMapper;
 import site.dopplerxd.backend.services.impl.utils.UserDetailsImpl;
 

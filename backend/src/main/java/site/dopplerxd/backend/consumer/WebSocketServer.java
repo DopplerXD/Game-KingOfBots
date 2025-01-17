@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 import jakarta.websocket.*;
 import jakarta.websocket.server.PathParam;
 import jakarta.websocket.server.ServerEndpoint;
-import org.springframework.stereotype.Controller;
-import site.dopplerxd.backend.entity.User;
+import site.dopplerxd.backend.mapper.RecordMapper;
+import site.dopplerxd.backend.pojo.User;
 import site.dopplerxd.backend.mapper.UserMapper;
 import site.dopplerxd.backend.utils.Game;
 import site.dopplerxd.backend.utils.JwtAuthentication;
@@ -24,14 +24,20 @@ public class WebSocketServer {
 
     private Session session = null;
     private User user;
-    private static ConcurrentHashMap<Integer, WebSocketServer> users = new ConcurrentHashMap<>(); // 线程安全的Map
+    public static ConcurrentHashMap<Integer, WebSocketServer> users = new ConcurrentHashMap<>(); // 线程安全的Map
     private static CopyOnWriteArraySet<User> matchpool = new CopyOnWriteArraySet<>(); // 线程安全的Set
 
     private static UserMapper userMapper;
+    public static RecordMapper recordMapper;
+    private Game game = null;
 
     @Autowired
-    public void setUserMapper(UserMapper userMapper) {
+    private void setUserMapper(UserMapper userMapper) {
         WebSocketServer.userMapper = userMapper;
+    }
+    @Autowired
+    public void setUserMapper(RecordMapper recordMapperMapper) {
+        WebSocketServer.recordMapper = recordMapperMapper;
     }
 
     @OnOpen
@@ -71,21 +77,34 @@ public class WebSocketServer {
             matchpool.remove(user1);
             matchpool.remove(user2);
 
-            Game game = new Game(13, 16, 20);
+            Game game = new Game(13, 16, 20, user1.getId(), user2.getId());
             game.createGameMap();
+            users.get(user1.getId()).game = game;
+            users.get(user2.getId()).game = game;
+
+            game.start();
+
+            JSONObject resGame = new JSONObject();
+            resGame.put("id1", game.getPlayer1().getId());
+            resGame.put("sx1", game.getPlayer1().getSx());
+            resGame.put("sy1", game.getPlayer1().getSy());
+            resGame.put("id2", game.getPlayer2().getId());
+            resGame.put("sx2", game.getPlayer2().getSx());
+            resGame.put("sy2", game.getPlayer2().getSy());
+            resGame.put("map", game.getGameMap());
 
             JSONObject res1 = new JSONObject();
             res1.put("event", "start-matching");
             res1.put("opponent_username", user2.getUsername());
             res1.put("opponent_photo", user2.getPhoto());
-            res1.put("gamemap", game.getGameMap());
+            res1.put("game", resGame);
             users.get(user1.getId()).sendMessage(res1.toJSONString());
 
             JSONObject res2 = new JSONObject();
             res2.put("event", "start-matching");
             res2.put("opponent_username", user1.getUsername());
             res2.put("opponent_photo", user1.getPhoto());
-            res2.put("gamemap", game.getGameMap());
+            res2.put("game", resGame);
             users.get(user2.getId()).sendMessage(res2.toJSONString());
         }
     }
@@ -93,6 +112,14 @@ public class WebSocketServer {
     private void stopMatching() {
         System.out.println("stop matching");
         matchpool.remove(this.user);
+    }
+
+    private void move(int direction) {
+        if (game.getPlayer1().getId().equals(user.getId())) {
+            game.setNextStep1(direction);
+        } else if (game.getPlayer2().getId().equals(user.getId())) {
+            game.setNextStep2(direction);
+        }
     }
 
     @OnMessage
@@ -107,6 +134,9 @@ public class WebSocketServer {
         } else if ("stop-matching".equals(event)) {
             // 取消匹配
             stopMatching();
+        } else if ("move".equals(event)) {
+            // 移动
+            move(data.getInteger("direction"));
         }
     }
 

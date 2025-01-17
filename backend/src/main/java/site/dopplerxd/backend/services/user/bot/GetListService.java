@@ -1,7 +1,7 @@
 package site.dopplerxd.backend.services.user.bot;
 
 
-import site.dopplerxd.backend.entity.Bot;
+import site.dopplerxd.backend.pojo.Bot;
 
 import java.util.List;
 
